@@ -12,8 +12,8 @@
   color-scheme: light;
 }
 
-/* Dark mode via class */
-.dark {
+/* Dark mode via class applied to html element */
+html.dark {
   --background: #0a0a0a;
   --foreground: #ededed;
   color-scheme: dark;
@@ -21,7 +21,7 @@
 
 /* System preference dark mode (when no class is set) */
 @media (prefers-color-scheme: dark) {
-  :root:not(.light) {
+  html:not(.light) {
     --background: #0a0a0a;
     --foreground: #ededed;
     color-scheme: dark;
