@@ -68,6 +68,10 @@ export default function ExpenseChart({ currentMonth }: ExpenseChartProps) {
     return date.toLocaleDateString('en-US', { month: 'short', year: '2-digit' })
   }
 
+  // Ensure we always have data to display, even if all zeros
+  const hasData = chartData.length > 0
+  const maxValue = Math.max(...chartData.map(point => point.total))
+
   const data = {
     labels: chartData.map(point => formatMonthLabel(point.month)),
     datasets: [
@@ -81,6 +85,9 @@ export default function ExpenseChart({ currentMonth }: ExpenseChartProps) {
         pointBorderColor: 'rgb(99, 102, 241)',
         pointHoverBackgroundColor: 'rgb(79, 70, 229)',
         pointHoverBorderColor: 'rgb(79, 70, 229)',
+        pointRadius: 4,
+        pointHoverRadius: 6,
+        fill: true,
       },
     ],
   }
@@ -115,6 +122,8 @@ export default function ExpenseChart({ currentMonth }: ExpenseChartProps) {
     scales: {
       y: {
         beginAtZero: true,
+        min: 0,
+        max: maxValue > 0 ? undefined : 100, // Show a range even when no data
         ticks: {
           color: 'rgb(107, 114, 128)',
           callback: function(value: string | number) {
@@ -165,6 +174,13 @@ export default function ExpenseChart({ currentMonth }: ExpenseChartProps) {
 
   return (
     <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+      {maxValue === 0 && hasData && (
+        <div className="mb-2 text-center">
+          <p className="text-sm text-gray-500 dark:text-gray-400">
+            Add your first expense to see the trend!
+          </p>
+        </div>
+      )}
       <div className="h-64">
         <Line data={data} options={options} />
       </div>

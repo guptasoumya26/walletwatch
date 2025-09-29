@@ -12,6 +12,8 @@ export const EXPENSE_CATEGORIES = [
   'Swiggy',
   'Maid',
   'Cook',
+  'UPI Payment',
+  'Grocery From Market',
   'Others'
 ] as const
 
