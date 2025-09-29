@@ -1,6 +1,6 @@
 # 💰 WalletWatch - Shared Expense Tracker
 
-A beautiful and intuitive expense tracking application designed for Soumyansh and Anu to manage their shared household expenses with ease.
+A beautiful and intuitive expense tracking application designed for 2 Users to manage their shared household expenses with ease.
 
 ![Next.js](https://img.shields.io/badge/Next.js-15.5.4-black?style=flat-square&logo=next.js)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=flat-square&logo=typescript)
@@ -10,7 +10,7 @@ A beautiful and intuitive expense tracking application designed for Soumyansh an
 ## ✨ Features
 
 ### 🔐 **Secure Authentication**
-- Individual login system for Soumyansh and Anu
+- Individual login system for 2 Users
 - Password hashing with bcrypt
 - Security questions for password recovery
 - Session management with proper authentication
@@ -150,7 +150,7 @@ src/
 ## 📱 Usage Guide
 
 ### Login
-1. Select your username (Soumyansh or Anu)
+1. Select your username 
 2. Enter your password
 3. Access the dashboard
 
@@ -223,7 +223,7 @@ npx tsc --noEmit
 
 ## 🤝 Contributing
 
-This is a private project for Soumyansh and Anu. For feature requests or bug reports:
+This is a private project for 2 Users. For feature requests or bug reports:
 1. Create an issue with detailed description
 2. Include steps to reproduce (for bugs)
 3. Suggest implementation approach (for features)
@@ -234,8 +234,6 @@ Private Project - All Rights Reserved
 
 ---
 
-**Built with ❤️ for efficient expense sharing between Soumyansh and Anu**
+**Built with ❤️ for efficient expense sharing.
 
-*Secure, responsive, and feature-rich expense tracking application.*
-
-🔗 **Live Demo**: [WalletWatch App](https://walletwatch-rose.vercel.app)
+🔗 **Live Demo**: [Deploy on Vercel](https://vercel.com)
