@@ -19,12 +19,21 @@ html.dark {
   color-scheme: dark;
 }
 
+html.dark body {
+  background-color: #0a0a0a !important;
+  color: #ededed !important;
+}
+
 /* System preference dark mode (when no class is set) */
 @media (prefers-color-scheme: dark) {
   html:not(.light) {
     --background: #0a0a0a;
     --foreground: #ededed;
     color-scheme: dark;
+  }
+  html:not(.light) body {
+    background-color: #0a0a0a !important;
+    color: #ededed !important;
   }
 }
 
@@ -33,4 +42,17 @@ body {
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Debug styles to verify dark mode is working */
+html.dark .debug-theme::after {
+  content: "DARK MODE ACTIVE";
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background: red;
+  color: white;
+  padding: 5px;
+  font-size: 12px;
+  z-index: 9999;
 }

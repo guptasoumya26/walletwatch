@@ -6,11 +6,19 @@ import { useEffect, useState } from 'react'
 
 export default function ThemeToggle() {
   const [mounted, setMounted] = useState(false)
-  const { setTheme, resolvedTheme } = useTheme()
+  const { setTheme, resolvedTheme, theme } = useTheme()
 
   useEffect(() => {
     setMounted(true)
   }, [])
+
+  useEffect(() => {
+    if (mounted) {
+      console.log('Theme state:', { theme, resolvedTheme })
+      console.log('HTML class list:', document.documentElement.classList.toString())
+      console.log('HTML has dark class:', document.documentElement.classList.contains('dark'))
+    }
+  }, [theme, resolvedTheme, mounted])
 
   if (!mounted) {
     return null
@@ -18,7 +26,13 @@ export default function ThemeToggle() {
 
   const handleToggle = () => {
     const newTheme = resolvedTheme === 'dark' ? 'light' : 'dark'
+    console.log('Toggling from', resolvedTheme, 'to', newTheme)
     setTheme(newTheme)
+
+    // Check if class is applied after toggle
+    setTimeout(() => {
+      console.log('After toggle - HTML class list:', document.documentElement.classList.toString())
+    }, 100)
   }
 
   return (
