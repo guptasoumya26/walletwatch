@@ -1,0 +1,15 @@
+A Simple 2 user Expense Writer
+1) Should have 2 user logins
+2) Should have monthly views with year
+3) lets say User 1 "Soumyansh" does a login, he gets to see current month which is September 2025 
+as of now, Now he will simply log whatever expenses he did in house which are share-able between Soumyansh And Anu
+4) Now lets say Anu logs in, sees current month as well, logs her own expenses which are share-able between Soumyansh and Anu
+5) Below each of the user, Auto total of their expenses should happen
+6) Each individual share should be calculated automatically simply by total of both divided by 2
+7) Whomsover has paid extra, then how much other user should pay to balance out should be shown
+8) Soumyansh cant edit Anu's entry and vice-versa
+9) In the end there should be a Simple note section every month where both can write anything miscellaneous
+10) Also Monthwise graph should be displayed to see a trend of how are our total expenses going month on month
+11) Tech Stack - Next JS, Vercel, Supabase, Dark and Light theme
+12) Maintain proper .gitignore, README.md, .env file for secrets, keep securrity intact
+13) We need to deploy this on vercel with db on supabase.
