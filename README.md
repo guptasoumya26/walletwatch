@@ -236,4 +236,6 @@ Private Project - All Rights Reserved
 
 **Built with ❤️ for efficient expense sharing between Soumyansh and Anu**
 
+*Secure, responsive, and feature-rich expense tracking application.*
+
 🔗 **Live Demo**: [WalletWatch App](https://walletwatch-rose.vercel.app)
