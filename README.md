@@ -236,4 +236,4 @@ Private Project - All Rights Reserved
 
 **Built with ❤️ for efficient expense sharing between Soumyansh and Anu**
 
-🔗 **Live Demo**: [Deploy on Vercel](https://vercel.com)
+🔗 **Live Demo**: [WalletWatch App](https://walletwatch-rose.vercel.app)
