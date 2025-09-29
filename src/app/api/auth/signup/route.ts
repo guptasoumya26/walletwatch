@@ -33,7 +33,6 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Check if username already exists
     const { data: existingUser } = await supabase
       .from('users')
       .select('id')
@@ -47,7 +46,6 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Check if email already exists
     const { data: existingEmail } = await supabase
       .from('users')
       .select('id')
@@ -61,13 +59,11 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Hash the password and security answers
     const password_hash = await hashPassword(password)
     const hashed_answer_1 = await hashPassword(security_answer_1.toLowerCase().trim())
     const hashed_answer_2 = await hashPassword(security_answer_2.toLowerCase().trim())
     const hashed_answer_3 = await hashPassword(security_answer_3.toLowerCase().trim())
 
-    // Create the user
     const { data: user, error } = await supabase
       .from('users')
       .insert({

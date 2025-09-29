@@ -23,12 +23,10 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Hash the security answers
     const hashed_answer_1 = await hashPassword(security_answer_1.toLowerCase().trim())
     const hashed_answer_2 = await hashPassword(security_answer_2.toLowerCase().trim())
     const hashed_answer_3 = await hashPassword(security_answer_3.toLowerCase().trim())
 
-    // Update the user's security questions
     const { error } = await supabase
       .from('users')
       .update({

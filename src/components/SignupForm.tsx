@@ -67,7 +67,6 @@ export default function SignupForm({ onBackToLogin }: SignupFormProps) {
 
       setSuccess('Account created successfully! Logging you in...')
 
-      // Automatically log in the user after successful signup
       setTimeout(() => {
         login(data.user)
         router.push('/dashboard')
@@ -169,7 +168,6 @@ export default function SignupForm({ onBackToLogin }: SignupFormProps) {
               />
             </div>
 
-            {/* Security Questions Section */}
             <div className="border-t border-gray-200 dark:border-gray-600 pt-4">
               <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-4">
                 Security Questions
@@ -178,7 +176,6 @@ export default function SignupForm({ onBackToLogin }: SignupFormProps) {
                 Choose 3 security questions to help recover your account if you forget your password.
               </p>
 
-              {/* Security Question 1 */}
               <div className="space-y-2">
                 <label htmlFor="securityQuestion1" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                   Security Question 1
@@ -205,7 +202,6 @@ export default function SignupForm({ onBackToLogin }: SignupFormProps) {
                 />
               </div>
 
-              {/* Security Question 2 */}
               <div className="space-y-2">
                 <label htmlFor="securityQuestion2" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                   Security Question 2
@@ -232,7 +228,6 @@ export default function SignupForm({ onBackToLogin }: SignupFormProps) {
                 />
               </div>
 
-              {/* Security Question 3 */}
               <div className="space-y-2">
                 <label htmlFor="securityQuestion3" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                   Security Question 3

@@ -13,7 +13,6 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Get user and their security questions
     const { data: user, error: userError } = await supabase
       .from('users')
       .select('id, username, security_question_1, security_answer_1, security_question_2, security_answer_2, security_question_3, security_answer_3')
@@ -27,7 +26,6 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Check if user has security questions set
     if (!user.security_question_1 || !user.security_answer_1 ||
         !user.security_question_2 || !user.security_answer_2 ||
         !user.security_question_3 || !user.security_answer_3) {
@@ -37,7 +35,6 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Verify all three answers
     const answer1Valid = await bcrypt.compare(answers[0].toLowerCase().trim(), user.security_answer_1)
     const answer2Valid = await bcrypt.compare(answers[1].toLowerCase().trim(), user.security_answer_2)
     const answer3Valid = await bcrypt.compare(answers[2].toLowerCase().trim(), user.security_answer_3)
@@ -49,7 +46,6 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Return success with user info (questions will be sent separately)
     return NextResponse.json({
       success: true,
       userId: user.id,

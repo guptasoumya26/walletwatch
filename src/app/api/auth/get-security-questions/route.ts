@@ -12,7 +12,6 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Get user's security questions (not the answers)
     const { data: user, error: userError } = await supabase
       .from('users')
       .select('security_question_1, security_question_2, security_question_3')
@@ -26,7 +25,6 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Check if user has security questions set
     if (!user.security_question_1 || !user.security_question_2 || !user.security_question_3) {
       return NextResponse.json(
         { error: 'Security questions not set for this account' },

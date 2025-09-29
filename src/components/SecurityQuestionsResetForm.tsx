@@ -148,7 +148,6 @@ export default function SecurityQuestionsResetForm({ onBackToLogin }: SecurityQu
           </p>
         </div>
 
-        {/* Step 1: Username */}
         {step === 'username' && (
           <form onSubmit={handleUsernameSubmit} className="mt-8 space-y-6">
             <div>
@@ -183,7 +182,6 @@ export default function SecurityQuestionsResetForm({ onBackToLogin }: SecurityQu
           </form>
         )}
 
-        {/* Step 2: Security Questions */}
         {step === 'questions' && (
           <form onSubmit={handleQuestionsSubmit} className="mt-8 space-y-6">
             <div className="space-y-4">
@@ -224,7 +222,6 @@ export default function SecurityQuestionsResetForm({ onBackToLogin }: SecurityQu
           </form>
         )}
 
-        {/* Step 3: New Password */}
         {step === 'newPassword' && (
           <form onSubmit={handlePasswordSubmit} className="mt-8 space-y-6">
             <div className="space-y-4">

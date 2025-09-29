@@ -100,7 +100,6 @@ export default function ProfilePage() {
           </p>
 
           <form onSubmit={handleSave} className="space-y-6">
-            {/* Security Question 1 */}
             <div className="space-y-2">
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                 Security Question 1
@@ -126,7 +125,6 @@ export default function ProfilePage() {
               />
             </div>
 
-            {/* Security Question 2 */}
             <div className="space-y-2">
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                 Security Question 2
@@ -152,7 +150,6 @@ export default function ProfilePage() {
               />
             </div>
 
-            {/* Security Question 3 */}
             <div className="space-y-2">
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                 Security Question 3

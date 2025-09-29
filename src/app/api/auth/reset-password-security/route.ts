@@ -20,10 +20,8 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Hash the new password
     const password_hash = await hashPassword(newPassword)
 
-    // Update the user's password
     const { error: updateError } = await supabase
       .from('users')
       .update({ password_hash })
