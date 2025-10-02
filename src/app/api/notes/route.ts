@@ -53,12 +53,17 @@ export async function POST(request: NextRequest) {
 
     const { data: note, error } = await supabaseAdmin
       .from('monthly_notes')
-      .upsert({
-        user_id,
-        month,
-        note_content: note_content || '',
-        updated_at: new Date().toISOString(),
-      })
+      .upsert(
+        {
+          user_id,
+          month,
+          note_content: note_content || '',
+          updated_at: new Date().toISOString(),
+        },
+        {
+          onConflict: 'user_id,month'
+        }
+      )
       .select()
       .single()
 
