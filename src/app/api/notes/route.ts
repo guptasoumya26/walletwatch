@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabase } from '@/lib/supabase'
+import { supabaseAdmin } from '@/lib/supabase'
 
 export async function GET(request: NextRequest) {
   try {
@@ -14,7 +14,7 @@ export async function GET(request: NextRequest) {
       )
     }
 
-    const { data: note, error } = await supabase
+    const { data: note, error } = await supabaseAdmin
       .from('monthly_notes')
       .select('*')
       .eq('user_id', userId)
@@ -51,7 +51,7 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const { data: note, error } = await supabase
+    const { data: note, error } = await supabaseAdmin
       .from('monthly_notes')
       .upsert({
         user_id,
