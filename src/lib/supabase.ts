@@ -89,6 +89,47 @@ export type Database = {
           updated_at?: string
         }
       }
+      pending_balances: {
+        Row: {
+          id: string
+          creditor_id: string
+          debtor_id: string
+          amount: number
+          description: string
+          category: string
+          created_at: string
+          settled_at: string | null
+          settled_by: string | null
+          created_by: string
+          cleared_for: string[] | null
+        }
+        Insert: {
+          id?: string
+          creditor_id: string
+          debtor_id: string
+          amount: number
+          description: string
+          category: string
+          created_at?: string
+          settled_at?: string | null
+          settled_by?: string | null
+          created_by: string
+          cleared_for?: string[] | null
+        }
+        Update: {
+          id?: string
+          creditor_id?: string
+          debtor_id?: string
+          amount?: number
+          description?: string
+          category?: string
+          created_at?: string
+          settled_at?: string | null
+          settled_by?: string | null
+          created_by?: string
+          cleared_for?: string[] | null
+        }
+      }
     }
   }
 }
