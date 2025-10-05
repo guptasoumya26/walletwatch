@@ -13,7 +13,7 @@ import BalanceCalculator from './BalanceCalculator'
 import NotesSection from './NotesSection'
 import ExpenseChart from './ExpenseChart'
 import PendingBalancesSection from './PendingBalancesSection'
-import { User as TypedUser } from '@/lib/types'
+import { User as TypedUser, PendingBalance } from '@/lib/types'
 
 interface DashboardProps {
   user: User
@@ -41,6 +41,8 @@ export default function Dashboard({ user, currentMonth, setCurrentMonth }: Dashb
   const [showExpenseForm, setShowExpenseForm] = useState(false)
   const [editingExpense, setEditingExpense] = useState<Expense | null>(null)
   const [allUsers, setAllUsers] = useState<TypedUser[]>([])
+  const [pendingBalances, setPendingBalances] = useState<PendingBalance[]>([])
+  const [isPendingLoading, setIsPendingLoading] = useState(true)
 
   // Fetch all users to get partner info
   useEffect(() => {
@@ -75,6 +77,24 @@ export default function Dashboard({ user, currentMonth, setCurrentMonth }: Dashb
   useEffect(() => {
     fetchExpenses()
   }, [fetchExpenses])
+
+  const fetchPendingBalances = useCallback(async () => {
+    try {
+      const response = await fetch('/api/pending-balances?status=all')
+      if (response.ok) {
+        const data = await response.json()
+        setPendingBalances(data.pendingBalances || [])
+      }
+    } catch (error) {
+      console.error('Error fetching pending balances:', error)
+    } finally {
+      setIsPendingLoading(false)
+    }
+  }, [])
+
+  useEffect(() => {
+    fetchPendingBalances()
+  }, [fetchPendingBalances])
 
   const handlePreviousMonth = () => {
     setCurrentMonth(getPreviousMonth(currentMonth))
@@ -219,12 +239,17 @@ export default function Dashboard({ user, currentMonth, setCurrentMonth }: Dashb
           otherUserExpenses={otherUserExpenses}
           currentUser={user.username}
           userId={user.id}
+          pendingBalances={pendingBalances}
+          isPendingLoading={isPendingLoading}
         />
 
         <div className="mt-6">
           <PendingBalancesSection
             user={user}
             partnerUser={partnerUser}
+            pendingBalances={pendingBalances}
+            isPendingLoading={isPendingLoading}
+            onPendingBalancesChange={fetchPendingBalances}
           />
         </div>
 

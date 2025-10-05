@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState } from 'react'
 import { Plus } from 'lucide-react'
 import { User, PendingBalance } from '@/lib/types'
 import PendingBalanceForm from './PendingBalanceForm'
@@ -9,41 +9,23 @@ import PendingBalancesList from './PendingBalancesList'
 interface PendingBalancesSectionProps {
   user: User
   partnerUser: User
+  pendingBalances: PendingBalance[]
+  isPendingLoading: boolean
+  onPendingBalancesChange: () => void
 }
 
 export default function PendingBalancesSection({
   user,
   partnerUser,
+  pendingBalances,
+  isPendingLoading,
+  onPendingBalancesChange,
 }: PendingBalancesSectionProps) {
-  const [pendingBalances, setPendingBalances] = useState<PendingBalance[]>([])
-  const [isLoading, setIsLoading] = useState(true)
   const [showForm, setShowForm] = useState(false)
   const [error, setError] = useState('')
 
-  const fetchPendingBalances = useCallback(async () => {
-    try {
-      setError('')
-      const response = await fetch('/api/pending-balances?status=all')
-      if (response.ok) {
-        const data = await response.json()
-        setPendingBalances(data.pendingBalances || [])
-      } else {
-        setError('Failed to load pending balances')
-      }
-    } catch (error) {
-      console.error('Error fetching pending balances:', error)
-      setError('Failed to load pending balances')
-    } finally {
-      setIsLoading(false)
-    }
-  }, [])
-
-  useEffect(() => {
-    fetchPendingBalances()
-  }, [fetchPendingBalances])
-
   const handleBalanceAdded = () => {
-    fetchPendingBalances()
+    onPendingBalancesChange()
     setShowForm(false)
   }
 
@@ -62,7 +44,7 @@ export default function PendingBalancesSection({
       })
 
       if (response.ok) {
-        fetchPendingBalances()
+        onPendingBalancesChange()
       } else {
         const data = await response.json()
         alert(data.error || 'Failed to settle pending balance')
@@ -82,7 +64,7 @@ export default function PendingBalancesSection({
       })
 
       if (response.ok) {
-        fetchPendingBalances()
+        onPendingBalancesChange()
       } else {
         const data = await response.json()
         alert(data.error || 'Failed to delete pending balance')
@@ -107,7 +89,7 @@ export default function PendingBalancesSection({
 
       if (response.ok) {
         const data = await response.json()
-        fetchPendingBalances()
+        onPendingBalancesChange()
         alert(`Cleared ${data.clearedCount} item(s) from your settled history. Records archived for admin review.`)
       } else {
         const data = await response.json()
@@ -156,7 +138,7 @@ export default function PendingBalancesSection({
         onSettle={handleSettle}
         onDelete={handleDelete}
         onClearHistory={handleClearHistory}
-        isLoading={isLoading}
+        isLoading={isPendingLoading}
       />
     </div>
   )

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { ChevronDown, ChevronUp } from 'lucide-react'
 import { PendingBalance } from '@/lib/types'
 
@@ -21,6 +21,8 @@ interface BalanceCalculatorProps {
   otherUserExpenses: Expense[]
   currentUser: string
   userId: string
+  pendingBalances: PendingBalance[]
+  isPendingLoading: boolean
 }
 
 export default function BalanceCalculator({
@@ -28,10 +30,10 @@ export default function BalanceCalculator({
   otherUserExpenses,
   currentUser,
   userId,
+  pendingBalances,
+  isPendingLoading,
 }: BalanceCalculatorProps) {
-  const [pendingBalances, setPendingBalances] = useState<PendingBalance[]>([])
   const [showPendingDetails, setShowPendingDetails] = useState(false)
-  const [isLoadingPending, setIsLoadingPending] = useState(true)
 
   const userTotal = userExpenses.reduce((sum, expense) => sum + expense.amount, 0)
   const otherUserTotal = otherUserExpenses.reduce((sum, expense) => sum + expense.amount, 0)
@@ -39,25 +41,6 @@ export default function BalanceCalculator({
   const equalShare = grandTotal / 2
   const sharedBalance = userTotal - equalShare
   const otherUserName = currentUser === 'Soumyansh' ? 'Anu' : 'Soumyansh'
-
-  // Fetch active pending balances
-  useEffect(() => {
-    const fetchPendingBalances = async () => {
-      try {
-        const response = await fetch('/api/pending-balances?status=active')
-        if (response.ok) {
-          const data = await response.json()
-          setPendingBalances(data.pendingBalances || [])
-        }
-      } catch (error) {
-        console.error('Error fetching pending balances:', error)
-      } finally {
-        setIsLoadingPending(false)
-      }
-    }
-
-    fetchPendingBalances()
-  }, [])
 
   // Calculate pending balance amounts
   const userPendingCredit = pendingBalances
@@ -164,7 +147,7 @@ export default function BalanceCalculator({
           </div>
 
           {/* Pending Balances */}
-          {!isLoadingPending && activePendingForUser.length > 0 && (
+          {!isPendingLoading && activePendingForUser.length > 0 && (
             <div className="mb-4">
               <button
                 onClick={() => setShowPendingDetails(!showPendingDetails)}
