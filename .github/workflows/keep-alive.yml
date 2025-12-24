@@ -13,7 +13,7 @@ jobs:
       - name: Ping health check endpoint
         run: |
           echo "Pinging health check endpoint..."
-          response=$(curl -s -o /dev/null -w "%{http_code}" https://walletwatch-app.vercel.app/api/health)
+          response=$(curl -s -o /dev/null -w "%{http_code}" https://walletwatch-sage.vercel.app/api/health)
           echo "Response code: $response"
 
           if [ $response -eq 200 ]; then
