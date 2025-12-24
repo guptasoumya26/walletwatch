@@ -1,0 +1,27 @@
+name: Keep Supabase Active
+
+on:
+  schedule:
+    # Run every 4 hours
+    - cron: '0 */4 * * *'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  ping-health-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping health check endpoint
+        run: |
+          echo "Pinging health check endpoint..."
+          response=$(curl -s -o /dev/null -w "%{http_code}" https://walletwatch-app.vercel.app/api/health)
+          echo "Response code: $response"
+
+          if [ $response -eq 200 ]; then
+            echo "✅ Health check successful"
+          else
+            echo "❌ Health check failed with code $response"
+            exit 1
+          fi
+
+      - name: Log timestamp
+        run: echo "Health check completed at $(date)"
