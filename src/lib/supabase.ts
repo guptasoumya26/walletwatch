@@ -130,6 +130,29 @@ export type Database = {
           cleared_for?: string[] | null
         }
       }
+      health_checks: {
+        Row: {
+          id: string
+          checked_at: string
+          status: string
+          message: string | null
+          response_time_ms: number | null
+        }
+        Insert: {
+          id?: string
+          checked_at?: string
+          status?: string
+          message?: string | null
+          response_time_ms?: number | null
+        }
+        Update: {
+          id?: string
+          checked_at?: string
+          status?: string
+          message?: string | null
+          response_time_ms?: number | null
+        }
+      }
     }
   }
 }
