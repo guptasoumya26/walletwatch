@@ -76,9 +76,11 @@ SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
 
 ### 3. Database Setup
 1. Create a new Supabase project
-2. Run the SQL schema from `supabase-schema-fixed.sql` in your Supabase SQL Editor
-3. Set up Row Level Security policies
-4. Generate password hashes for initial users
+2. Run the migrations in order from the `supabase/migrations/` folder in your Supabase SQL Editor:
+   - `create_health_checks_table.sql` - Health monitoring table
+3. Note: Main tables (users, expenses, monthly_notes, pending_balances) should already exist
+4. Set up Row Level Security policies if needed
+5. Generate password hashes for initial users
 
 ### 4. Development
 ```bash
